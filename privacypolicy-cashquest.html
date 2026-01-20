@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Cash Quest</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #00ff88;
+            --dark-green: #00cc6a;
+            --black: #0a0a0a;
+            --soft-black: #1a1a1a;
+            --white: #ffffff;
+            --grey: #888888;
+            --light-grey: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridScroll 20s linear infinite;
+        }
+
+        @keyframes gridScroll {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb1 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary-green);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .orb2 {
+            width: 300px;
+            height: 300px;
+            background: var(--dark-green);
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Header */
+        header {
+            text-align: left;
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--soft-black);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container:hover {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--black);
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--grey);
+            font-weight: 300;
+            max-width: 600px;
+        }
+
+        .last-update {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 3px solid var(--primary-green);
+            font-size: 0.85rem;
+            color: var(--primary-green);
+        }
+
+        /* Content Sections */
+        .content {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-green), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .section:hover {
+            border-color: rgba(0, 255, 136, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 255, 136, 0.1);
+        }
+
+        .section:hover::before {
+            opacity: 1;
+        }
+
+        h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .section p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .section ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .section li {
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 4px solid var(--primary-green);
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 204, 106, 0.05));
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 20px;
+            margin-top: 4rem;
+        }
+
+        .cta-section h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .cta-section p {
+            color: var(--grey);
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary-green);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-green);
+            font-family: 'Syne', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--primary-green);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--grey);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary-green);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .logo-container {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-green), var(--dark-green));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <div class="bg-animation">
+        <div class="bg-grid"></div>
+        <div class="floating-orb orb1"></div>
+        <div class="floating-orb orb2"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">₿</div>
+                <span style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem;">Cash Quest</span>
+            </div>
+            <h1>Política de Privacidade</h1>
+            <p class="subtitle">Transparência total sobre como protegemos seus dados e garantimos sua privacidade no Cash Quest.</p>
+            <div class="last-update">Última atualização: Janeiro 2026</div>
+        </header>
+
+        <div class="content">
+            <section class="section">
+                <h2><span class="section-number">01</span> Introdução</h2>
+                <p>O Cash Quest é comprometido com a proteção da sua privacidade e dos seus dados pessoais. Esta política descreve de forma clara e transparente como coletamos, usamos, armazenamos e protegemos suas informações.</p>
+                <p>Ao utilizar o Cash Quest, você concorda com as práticas descritas nesta política de privacidade.</p>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">02</span> Coleta e Armazenamento de Dados</h2>
+                <p>O Cash Quest armazena localmente no seu dispositivo dados essenciais para o funcionamento do aplicativo, incluindo:</p>
+                <ul>
+                    <li><strong>Transações financeiras:</strong> Registros de receitas e despesas que você cadastra</li>
+                    <li><strong>Categorias:</strong> Classificações personalizadas para organização</li>
+                    <li><strong>Contas bancárias:</strong> Informações sobre suas contas (apenas nomenclatura e saldos)</li>
+                    <li><strong>Metas financeiras:</strong> Objetivos e configurações que você define</li>
+                    <li><strong>Preferências do app:</strong> Configurações de interface e personalização</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>⚡ Importante:</strong> Todos os dados são armazenados exclusivamente em um banco de dados local no seu dispositivo. Nenhuma informação é enviada automaticamente para servidores externos ou na nuvem.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">03</span> Dados Sensíveis</h2>
+                <p>A sua segurança é nossa prioridade máxima. O Cash Quest possui políticas rígidas quanto a dados sensíveis:</p>
+                <div class="highlight-box">
+                    <p><strong>🔒 Você NÃO deve registrar no app:</strong></p>
+                    <ul style="margin-top: 1rem;">
+                        <li>Senhas bancárias ou de cartões</li>
+                        <li>Números completos de cartões de crédito ou débito</li>
+                        <li>Documentos pessoais (CPF, RG, CNH)</li>
+                        <li>Códigos de segurança (CVV)</li>
+                        <li>Qualquer informação que não seja estritamente necessária para controle financeiro pessoal</li>
+                    </ul>
+                </div>
+                <p>O Cash Quest foi projetado para rastrear apenas informações financeiras básicas de controle, não para armazenar credenciais de acesso ou dados sensíveis de identificação.</p>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">04</span> Serviços de Terceiros e Integrações</h2>
+                <p>Para melhorar a experiência do usuário, o Cash Quest utiliza alguns serviços de terceiros confiáveis:</p>
+                <ul>
+                    <li><strong>Google AdMob:</strong> Exibição de anúncios publicitários dentro do app</li>
+                    <li><strong>Google Play Services:</strong> Funcionalidades de compras in-app e serviços Google</li>
+                    <li><strong>Firebase Analytics:</strong> Análise anônima de uso para melhorias no app</li>
+                </ul>
+                <p>Esses serviços podem coletar informações de uso de acordo com suas próprias políticas de privacidade. O Cash Quest não controla nem tem acesso a essas informações coletadas por terceiros.</p>
+                <div class="highlight-box">
+                    <p>Recomendamos que você revise as políticas de privacidade desses serviços para entender completamente como seus dados de uso são tratados.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">05</span> Permissões do Dispositivo</h2>
+                <p>O Cash Quest pode solicitar algumas permissões do seu dispositivo para funcionalidades específicas:</p>
+                <ul>
+                    <li><strong>Notificações:</strong> Para lembretes de pagamentos e alertas de metas</li>
+                    <li><strong>Armazenamento:</strong> Para backup local e exportação de dados</li>
+                    <li><strong>Biometria:</strong> Para proteção adicional com impressão digital ou reconhecimento facial (opcional)</li>
+                    <li><strong>Câmera:</strong> Para digitalização de recibos ou comprovantes (se habilitado)</li>
+                </ul>
+                <p>Todas essas permissões podem ser gerenciadas a qualquer momento nas configurações do sistema operacional do seu dispositivo.</p>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">06</span> Compartilhamento de Dados</h2>
+                <p><strong>O Cash Quest não compartilha, vende ou aluga seus dados pessoais ou financeiros com terceiros.</strong></p>
+                <p>Os únicos dados que podem ser compartilhados são informações anônimas e agregadas de uso do aplicativo com nossos parceiros de análise (como Firebase Analytics), exclusivamente para fins de melhoria do produto.</p>
+                <div class="highlight-box">
+                    <p>Seus dados financeiros permanecem 100% privados e sob seu controle.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">07</span> Segurança dos Dados</h2>
+                <p>Implementamos medidas de segurança para proteger suas informações:</p>
+                <ul>
+                    <li>Criptografia de dados locais no dispositivo</li>
+                    <li>Opção de proteção por biometria ou PIN</li>
+                    <li>Armazenamento local seguro sem transmissão automática para servidores</li>
+                    <li>Atualizações regulares de segurança</li>
+                </ul>
+                <p>No entanto, lembre-se de que nenhum método de transmissão ou armazenamento eletrônico é 100% seguro. Recomendamos que você também proteja seu dispositivo com senha e mantenha-o atualizado.</p>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">08</span> Retenção e Exclusão de Dados</h2>
+                <p>Todos os seus dados ficam armazenados apenas no seu dispositivo. Você tem controle total sobre eles:</p>
+                <ul>
+                    <li><strong>Exclusão de transações:</strong> Você pode deletar registros individuais a qualquer momento</li>
+                    <li><strong>Limpeza de dados:</strong> Opção de limpar todo o histórico nas configurações do app</li>
+                    <li><strong>Desinstalação:</strong> Ao desinstalar o aplicativo ou limpar os dados nas configurações do sistema, todas as informações locais são removidas permanentemente</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>⚠️ Atenção:</strong> Recomendamos fazer backups regulares dos seus dados, pois uma vez excluídos, eles não poderão ser recuperados.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">09</span> Seus Direitos</h2>
+                <p>Como usuário do Cash Quest, você tem os seguintes direitos:</p>
+                <ul>
+                    <li><strong>Acesso:</strong> Visualizar todos os seus dados a qualquer momento dentro do app</li>
+                    <li><strong>Correção:</strong> Editar e corrigir informações incorretas</li>
+                    <li><strong>Exclusão:</strong> Deletar dados parcial ou totalmente</li>
+                    <li><strong>Exportação:</strong> Exportar seus dados para backup em formato compatível</li>
+                    <li><strong>Portabilidade:</strong> Transferir seus dados para outro dispositivo ou aplicativo</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">10</span> Menores de Idade</h2>
+                <p>O Cash Quest não coleta intencionalmente informações de menores de 13 anos. Se você é pai, mãe ou responsável e acredita que seu filho forneceu dados pessoais ao app, entre em contato conosco para que possamos tomar as medidas apropriadas.</p>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">11</span> Alterações na Política</h2>
+                <p>Podemos atualizar esta política de privacidade periodicamente para refletir mudanças no app ou requisitos legais. Notificaremos você sobre alterações significativas através de:</p>
+                <ul>
+                    <li>Notificação dentro do aplicativo</li>
+                    <li>Atualização da data "Última atualização" no topo desta página</li>
+                    <li>Comunicado na tela inicial do app</li>
+                </ul>
+                <p>Recomendamos revisar esta política periodicamente para se manter informado sobre como protegemos suas informações.</p>
+            </section>
+
+            <section class="section">
+                <h2><span class="section-number">12</span> Contato</h2>
+                <p>Em caso de dúvidas, preocupações ou solicitações sobre esta política de privacidade, você pode entrar em contato conosco através de:</p>
+                <ul>
+                    <li>E-mail de suporte dentro do aplicativo</li>
+                    <li>Página de contato na loja de aplicativos</li>
+                    <li>Formulário de feedback nas configurações do Cash Quest</li>
+                </ul>
+                <div class="highlight-box">
+                    <p>Responderemos todas as solicitações em até 48 horas úteis.</p>
+                </div>
+            </section>
+
+            <div class="cta-section">
+                <h3>Sua privacidade é nossa prioridade</h3>
+                <p>Estamos comprometidos em manter seus dados seguros e sua confiança em nós.</p>
+                <a href="#" class="btn-primary">Voltar ao App</a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Cash Quest. Todos os direitos reservados.</p>
+            <p style="margin-top: 1rem;">
+                <a href="#">Termos de Uso</a> • 
+                <a href="#">Suporte</a> • 
+                <a href="#">FAQ</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            document.getElementById('scrollIndicator').style.width = scrolled + '%';
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add intersection observer for section animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
